@@ -5,11 +5,21 @@ const FormattedOutput = ({ structuredTicket }) => {
     const htmlContent = generateHtml(structuredTicket);
 
     const copyToClipboard = () => {
-        navigator.clipboard.writeText(htmlContent).then(() => {
-            alert("HTML copied to clipboard!");
-        });
-    };
+        const ticketPreview = document.querySelector('.ticket-preview');
+        const range = document.createRange();
+        range.selectNode(ticketPreview);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
 
+        try {
+            document.execCommand('copy');
+            alert("Rich text copied to clipboard!");
+        } catch (err) {
+            console.error('Failed to copy: ', err);
+        }
+
+        window.getSelection().removeAllRanges();
+    };
 
     return (
         <div className="formatted-output-container">
@@ -24,7 +34,7 @@ const FormattedOutput = ({ structuredTicket }) => {
                     className="ticket-preview"
                 ></div>
                 <button onClick={copyToClipboard} className="cta">
-                    Copy HTML
+                    Copy Ticket Summary
                 </button>
 
             </div>

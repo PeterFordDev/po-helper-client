@@ -30,7 +30,7 @@ function App() {
     return (
         <>
             <SummaryInput setStructuredTicket={setStructuredTicket} setIsLoading={setIsLoading} />
-            {isLoading ? <div className="loading">Loading...</div> :
+            {isLoading ? <div className="container">Loading...</div> :
                 <>
                     <TicketForm structuredTicket={structuredTicket} setStructuredTicket={setStructuredTicket} />
                     <FormattedOutput structuredTicket={structuredTicket} />

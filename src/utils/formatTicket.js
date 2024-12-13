@@ -40,7 +40,7 @@ export const generateHtml = (structuredTicket) => {
       <h2>Monetate Goal</h2>
       <p>${structuredTicket.monetateGoal || "N/A"}</p>
       <h2>Acceptance Criteria</h2>
-      <p>${structuredTicket.acceptanceCriteria || "N/A"}</p>
+      <p>${formatArray(structuredTicket.acceptanceCriteria)}</p>
       <h2>Go Live Information</h2>
       <p>${structuredTicket.goLiveInformation || "N/A"}</p>
     </div>
