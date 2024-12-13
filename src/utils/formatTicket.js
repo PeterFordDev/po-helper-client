@@ -1,6 +1,9 @@
 // File: src/utils/ticketUtils.js
 export const generateHtml = (structuredTicket) => {
   const formatArray = (arr) => {
+    if (!Array.isArray(arr)) {
+      return "N/A";
+    }
     return arr.length ? `<ul>${arr.map(item => `<li>${item}</li>`).join('')}</ul>` : "N/A";
   };
 

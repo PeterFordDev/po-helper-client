@@ -11,7 +11,7 @@ const SummaryInput = ({ setStructuredTicket, setIsLoading }) => {
                 `${import.meta.env.VITE_BACKEND_URL}/process-ticket`,
                 { rawSummary }
             );
-
+            console.log(JSON.parse(response.data.structuredTicket))
             setStructuredTicket(JSON.parse(response.data.structuredTicket));
             setIsLoading(false);
         } catch (error) {
@@ -33,7 +33,7 @@ const SummaryInput = ({ setStructuredTicket, setIsLoading }) => {
                         value={rawSummary}
                         onChange={(e) => setRawSummary(e.target.value)}></textarea>
                 </div>
-                <button onClick={handleSubmit} class="cta">Submit</button>
+                <button onClick={handleSubmit} className="cta">Submit</button>
             </div>
         </div>
     );
