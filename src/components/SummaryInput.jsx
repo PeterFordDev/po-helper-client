@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from "axios";
+import { Textarea, Button, Container, Grid, Box } from '@mantine/core';
 
 const SummaryInput = ({ setStructuredTicket, setIsLoading }) => {
     const [rawSummary, setRawSummary] = useState("");
@@ -11,8 +12,11 @@ const SummaryInput = ({ setStructuredTicket, setIsLoading }) => {
                 `${import.meta.env.VITE_BACKEND_URL}/process-ticket`,
                 { rawSummary }
             );
-            console.log(JSON.parse(response.data.structuredTicket))
-            setStructuredTicket(JSON.parse(response.data.structuredTicket));
+            const structuredTicket = JSON.parse(response.data.structuredTicket);
+            // Convert goLiveDate to a Date object
+            structuredTicket.goLiveDate = structuredTicket.goLiveDate ? new Date(structuredTicket.goLiveDate) : null;
+            console.log(structuredTicket);
+            setStructuredTicket(structuredTicket);
             setIsLoading(false);
         } catch (error) {
             console.error("Failed to submit summary:", error);
@@ -21,21 +25,25 @@ const SummaryInput = ({ setStructuredTicket, setIsLoading }) => {
     };
 
     return (
-        <div className="summary-input-container">
-            <div className="container">
-                <div className="field-group field-group-full-width">
-                    <label htmlFor="summary" className="summary-input-label">Summary:</label>
-                    <textarea
-                        id="summary"
-                        name="summary"
-                        rows="8"
-                        placeholder="Paste summary here..."
-                        value={rawSummary}
-                        onChange={(e) => setRawSummary(e.target.value)}></textarea>
-                </div>
-                <button onClick={handleSubmit} className="cta">Submit</button>
-            </div>
-        </div>
+        <Box style={{ backgroundColor: "var(--mantine-color-gray-1)", paddingBottom: "20px" }}>
+            <Container>
+                <Grid>
+                    <Grid.Col span={12}>
+                        <Textarea
+                            label="Summary"
+                            description="Paste summary here..."
+                            value={rawSummary}
+                            onChange={(e) => setRawSummary(e.target.value)}
+                            autosize
+                            minRows={8}
+                        />
+                        <Button onClick={handleSubmit} mt="md" fullWidth variant="gradient"
+                            gradient={{ from: 'blue', to: 'cyan', deg: 90 }}
+                        >Submit</Button>
+                    </Grid.Col>
+                </Grid>
+            </Container>
+        </Box>
     );
 };
 

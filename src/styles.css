@@ -1,87 +1,19 @@
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    padding: 0;
-    margin: 0;
-    background-color: #f2f2f2;
+.ticket-preview {
+    color: #111;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-size: 2em;
-    font-weight: 400;
+.ticket-preview h1,
+.ticket-preview h2,
+.ticket-preview h3,
+.ticket-preview h4,
+.ticket-preview h5,
+.ticket-preview h6 {
+    margin-bottom: 0;
+    font-size: 1.2rem;
 }
 
-.summary-input-container {
-    background-color: #8AAAE5;
-    padding: 20px 0;
-    margin-bottom: 20px;
-}
-
-.summary-input-label {
-    font-size: 2rem;
-}
-
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-}
-
-.field-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.field-group-full-width {
-    grid-column: 1 / -1;
-}
-
-.field-group input,
-.field-group textarea {
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.field-group textarea {
-    min-height: 80px;
-}
-
-.cta {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 20px;
-}
-
-.formatted-output-container {
-    padding: 20px 0;
-    background-color: #8AAAE5;
-    margin-top: 20px;
-}
-
-.formatted-output-container input {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.ticket-preview h2 {
+.ticket-preview p,
+.ticket-preview ul {
+    margin-top: 10px;
     font-size: 1rem;
-    font-weight: 600;
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { Box, MantineProvider, Container, Paper, Loader, LoadingOverlay, Title, Text } from '@mantine/core';
 import SummaryInput from "./components/SummaryInput";
-import TicketForm from "./components/ticketForm";
+import TicketForm from "./components/TicketForm";
 import FormattedOutput from "./components/FormattedOutput";
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
         client: "",
         title: "",
         productOwner: "",
-        goLiveDate: "",
+        goLiveDate: null,
         stakeholders: [],
         overview: "",
         usefulInformation: "",
@@ -26,16 +27,28 @@ function App() {
     });
     const [isLoading, setIsLoading] = useState(false);
 
-
     return (
         <>
-            <SummaryInput setStructuredTicket={setStructuredTicket} setIsLoading={setIsLoading} />
-            {isLoading ? <div className="container">Loading...</div> :
-                <>
-                    <TicketForm structuredTicket={structuredTicket} setStructuredTicket={setStructuredTicket} />
-                    <FormattedOutput structuredTicket={structuredTicket} />
-                </>
-            }
+            <Box style={{ backgroundColor: "var(--mantine-color-gray-1)", padding: "20px 0" }}>
+                <Container>
+                    <Title order={1}>Team UIO - Ticket Generator</Title>
+                </Container>
+            </Box>
+            <Box pos="relative">
+
+                {isLoading ? <Box style={{ margin: "40px 0", textAlign: "center" }}><Loader size={50} /></Box> :
+                    <>
+
+                        <SummaryInput setStructuredTicket={setStructuredTicket} setIsLoading={setIsLoading} />
+
+
+                        <TicketForm structuredTicket={structuredTicket} setStructuredTicket={setStructuredTicket} />
+
+
+                        <FormattedOutput structuredTicket={structuredTicket} />
+
+                    </>}
+            </Box>
         </>
     );
 }

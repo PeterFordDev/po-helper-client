@@ -7,6 +7,15 @@ export const generateHtml = (structuredTicket) => {
     return arr.length ? `<ul>${arr.map(item => `<li>${item}</li>`).join('')}</ul>` : "N/A";
   };
 
+  const formatDate = (date) => {
+    if (!date) return "N/A";
+    const d = new Date(date);
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const year = String(d.getFullYear()).slice(-2);
+    return `${day}/${month}/${year}`;
+  };
+
   return `
     <div>
       <h2>Project Title</h2>
@@ -14,9 +23,9 @@ export const generateHtml = (structuredTicket) => {
       <h2>Product Owner</h2>
       <p>${structuredTicket.productOwner || "N/A"}</p>
       <h2>Go Live Date</h2>
-      <p>${structuredTicket.goLiveDate || "N/A"}</p>
+      <p>${formatDate(structuredTicket.goLiveDate)}</p>
       <h2>Stakeholders</h2>
-      <p>${formatArray(structuredTicket.stakeholders)}</p>
+      ${formatArray(structuredTicket.stakeholders)}
       <h2>Overview</h2>
       <p>${structuredTicket.overview || "N/A"}</p>
       <h2>Useful Information</h2>
@@ -26,11 +35,11 @@ export const generateHtml = (structuredTicket) => {
       <h2>Devices</h2>
       <p>${structuredTicket.devices || "N/A"}</p>
       <h2>Page Type</h2>
-      <p>${formatArray(structuredTicket.pageType)}</p>
+      ${formatArray(structuredTicket.pageType)}
       <h2>Targeting</h2>
-      <p>${formatArray(structuredTicket.targeting)}</p>
+      ${formatArray(structuredTicket.targeting)}
       <h2>Exclusions</h2>
-      <p>${formatArray(structuredTicket.exclusions)}</p>
+      ${formatArray(structuredTicket.exclusions)}
       <h2>Split</h2>
       <p>${structuredTicket.split || "N/A"}</p>
       <h2>FCA Required</h2>
@@ -40,7 +49,7 @@ export const generateHtml = (structuredTicket) => {
       <h2>Monetate Goal</h2>
       <p>${structuredTicket.monetateGoal || "N/A"}</p>
       <h2>Acceptance Criteria</h2>
-      <p>${formatArray(structuredTicket.acceptanceCriteria)}</p>
+      ${formatArray(structuredTicket.acceptanceCriteria)}
       <h2>Go Live Information</h2>
       <p>${structuredTicket.goLiveInformation || "N/A"}</p>
     </div>
