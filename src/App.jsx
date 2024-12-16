@@ -19,7 +19,7 @@ function App() {
         targeting: [],
         exclusions: ["/seaons", "/laura-ashley/"],
         split: "",
-        fcaRequired: "",
+        fcaRequired: false,
         businessJustification: "",
         monetateGoal: "",
         acceptanceCriteria: [],

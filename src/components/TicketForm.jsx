@@ -20,9 +20,10 @@ function TicketForm(props) {
         { name: "targeting", type: "text", placeholder: "Comma separated list" },
         { name: "exclusions", type: "text", placeholder: "Comma separated list" },
         { name: "split", type: "text", placeholder: "Split %" },
-        { name: "fcaRequired", type: "text", placeholder: "If FCA is required please add GAP PID" },
-        { name: "businessJustification", type: "textarea", placeholder: "Why does the business want to conduct this test" },
         { name: "monetateGoal", type: "text", placeholder: "Monetate Goal" },
+        { name: "fcaRequired", type: "text", placeholder: "If FCA is required please add GAP PID" },
+        { name: "gapPid", type: "text", placeholder: "GAP PID", disabled: !structuredTicket.fcaRequired },
+        { name: "businessJustification", type: "textarea", placeholder: "Why does the business want to conduct this test" },
         { name: "acceptanceCriteria", type: "textarea", placeholder: "This should be a list of parameters the QAs can test against" },
         { name: "goLiveInformation", type: "textarea", placeholder: "Information for the developer on go live" },
     ];
@@ -77,6 +78,7 @@ function TicketForm(props) {
                                         description={field.placeholder}
                                         value={structuredTicket[field.name]}
                                         onChange={handleChange}
+                                        disabled={field.disabled}
                                     />
                                 )}
                             </div>
